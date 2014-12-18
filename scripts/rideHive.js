@@ -24,7 +24,7 @@ var rideHiveApp = angular.module('rideHiveApp', []);
 rideHiveApp.controller('rhController', ['$scope', 'rideHiveService', function ($scope, rideHiveService) {
 
   $scope.names = "ceemion";
-  $scope.statusOutput = "Ride on hives...";
+  // $scope.statusOutput = "Ride on hives...";
 
   $scope.fetchModels = function () {
 
@@ -36,7 +36,7 @@ rideHiveApp.controller('rhController', ['$scope', 'rideHiveService', function ($
       console.log("models count: " + count);
 
       if(count === 0) {
-        $scope.statusOutput = "no car found!!!";
+        $scope.statusOutput = "Car make with name '" + $scope.queryInput + "' is not found!";
       }
       else {
         $scope.statusOutput = "number of car models found: " + data.modelsCount;

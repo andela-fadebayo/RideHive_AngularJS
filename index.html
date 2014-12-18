@@ -15,11 +15,13 @@
       <p>Your one stop for detailed infomation on cars, truck, SUV, van, minivan...</p>
     </header>
 
-    <div ng-bind="statusOutput">
+    <!-- <p style="text-align: center;">Search for  </p> -->
+
+    <div id="alert" ng-bind="statusOutput">
     </div>
 
     <div id="query">
-      <p>Search for your favourite cars here...</p>
+      <p>Search for your favourite cars here... Search for <em>{{queryInput}}</em></p>
 
       <div id="formWrap">
         <form>
@@ -56,7 +58,8 @@
     </div>
 
     <footer>
-      <p>Andela API project | Fiyin Adebayo | &copy; 2014</p>
+      <p>Andela API project implemented using AngularJS</p>
+      <p>Fiyin Adebayo | &copy; 2014</p>
     </footer>
 
     <script type="text/javascript" src="scripts/angular.js"></script>

@@ -42,7 +42,7 @@ header h1 {
   margin: 0 auto;
   text-align: center;
   color: #ff0000;
-  height: 100px;
+  /*height: 100px;*/
 }
 
 #results {
