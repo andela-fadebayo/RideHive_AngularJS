@@ -26,35 +26,38 @@
       <div id="formWrap">
         <form>
           <label for="queryInput">Make:</label>
-          <input type="text" ng-model="queryInput" id="queryInput" placeholder="Enter Car Make..." />
+          <input type="text" ng-model="queryInput" ng-keyup="fetchModels()" id="queryInput" placeholder="Enter Car Make..." />
           <br /><br />
 
           <label for="queryModel">Model:</label>
-          <input type="text" id="queryModel" placeholder="Enter Car Model..." />
+          <select id="queryModel" ng-model="queryModel" ng-change="fetchYears()">
+            <option ng-repeat="model in models">{{model.name}}</option>
+          </select>
+<!-- 
+          <input type="text" id="queryModel" placeholder="Enter Car Model..." /> -->
           <br /><br />
-          
-          <label for="makeState">State of Car:</label>
-          <select id="makeState">
-            <option value="">Select Car State...</option>
-            <option value="new">New</option>
-            <option value="used">Used</option>
-            <option value="future">Future</option>
-          </select><br /><br />
           
           <label for="makeYear">Year:</label>
-          <input type="text" id="makeYear" placeholder="e.g. 2014" />
+          <select id="makeYear" ng-model="queryYear">
+            <option ng-repeat="modelYear in years2">{{modelYear.year}}</option>
+          </select>
+          
           <br /><br />
           
-          <label for="keyword">keywords:</label>
-          <input type="text" id="keyword" placeholder="e.g. awd, black" /><br /><br />
           
-          <input type="submit" id="querySubmit" value="Go" ng-click="fetchModels()" />
+          <input type="submit" id="querySubmit" value="Go" ng-click="fetchStyles()" />
         </form>
       </div>
 
     </div>
 
+    <div>You selected: {{queryModel}} and {{queryYear}}
+    </div>
+
     <div id="results">
+      <ul>
+        <li ng-bind="engineInfo"></li>
+      </ul>
     </div>
 
     <footer>
