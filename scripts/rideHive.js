@@ -1,5 +1,5 @@
 /*Project 6 | Andela | Fiyin Adebayo
-rideHive Application implemented using Vehicle API
+Ride Hive Application implemented using Vehicle API
 17th December, 2014.
 
 Implementing using AngularJS and services.
@@ -23,25 +23,16 @@ var rideHiveApp = angular.module('rideHiveApp', []);
 
 rideHiveApp.controller('rhController', ['$scope', 'rideHiveService', function ($scope, rideHiveService) {
 
-  $scope.names = "ceemion";
-  // $scope.statusOutput = "Ride on hives...";
-
-  $scope.models = [];
-
-  $scope.years = [];
-
   $scope.fetchModels = function () {
 
     //success function 
     rideHiveService.getModels($scope.queryInput).success(function (data, status) {
-      // console.log("Yay! its here: " + data);
       
       var count = data.modelsCount;
-      // console.log("models count: " + count);
 
       if(count === 0) {
-        // $scope.statusOutput = "Car make with name '" + $scope.queryInput + "' is not found!";
-        $scope.statusOutput = "Searching...";
+        $scope.statusOutput = "Car make with name '" + $scope.queryInput + "' is not found!";
+        // $scope.statusOutput = "Searching...";
       }
       else {
         $scope.statusOutput = "Number of " + $scope.queryInput +" models found: " + data.modelsCount;
@@ -54,19 +45,15 @@ rideHiveApp.controller('rhController', ['$scope', 'rideHiveService', function ($
         //loop through data returned to retrieve models and models year
         angular.forEach(data.models, function (model, index) { 
           $scope.models.push(model);
-          // console.log("Honda models: " + model.name);
           
           //loop again through model object to retrieve model year
           angular.forEach(model.years, function (modelYear, index) {
-            // $scope.years.push(modelYear);
-            // console.log("Honda years " + modelYear.year);
-
             
-          }); //end of year forEach
-        }); //end of model forEach
-      } //end of else
+          });
+        });
+      } 
     });
-  }; //end of fetchModels fxn
+  }; 
 
   
   //get car make and model year
@@ -89,9 +76,12 @@ rideHiveApp.controller('rhController', ['$scope', 'rideHiveService', function ($
 
 
   $scope.fetchStyles = function () {
-    // console.log("info: " + $scope.queryInput + $scope.queryModel + $scope.queryYear);
-    rideHiveService.getStyles($scope.queryInput, $scope.queryModel, $scope.queryYear).success(function (data) {
-      console.log("Here's your styles data: " + data);
+
+    if ($scope.queryInput === "") {
+      $scope.statusOutput = "Please enter a car make!";
+    }
+    else {
+      rideHiveService.getStyles($scope.queryInput, $scope.queryModel, $scope.queryYear).success(function (data) {
 
       //loop yet again through years object to retried styles id
       angular.forEach(data.styles, function (style, index) {
@@ -99,72 +89,72 @@ rideHiveApp.controller('rhController', ['$scope', 'rideHiveService', function ($
 
         $scope.carStyleId = style.id;
 
-        console.log("car retrievd id " + style.id);
-
         rideHiveService.getData($scope.carStyleId).success(function (data) {
-          console.log("YOY! it worked " + data.engine.fuelType);
 
           //Car output headings
           $scope.head1 = "Basic Information";
-          $scope.head10 = "Car Make:";
           $scope.head2 = "Engine Details";
+          $scope.head3 = "Transmission";
+          $scope.head4 = "Style";
+          $scope.head5 = "Price";
 
           //Retrieving car info from styles data returned
           //Car basic information
-          $scope.carMake = data.make.name;
-          $scope.carModel = data.model.name;
-          $scope.carWheels = data.drivenWheels;
-          $scope.carDoors = data.numOfDoors;
+          $scope.carMake = "Car Make: " + data.make.name;
+          $scope.carModel = "Car Model: " + data.model.name;
+          $scope.carWheels = "Number of Wheels: " + data.drivenWheels;
+          $scope.carDoors = "Number of Doors: " + data.numOfDoors;
           $scope.carYear = "Year: " + data.year.year;
-          $scope.carState = data.states;
-          $scope.carTrim = data.trim;
+          $scope.carTrim = "Trim: " + data.trim;
 
           //Car engine details
-          $scope.engineName = data.engine.name;
+          $scope.engineName = "Name: " + data.engine.name;
           $scope.compressionRatio ="Compression Ratio: " + data.engine.compressionRatio;
-          $scope.cylinder = data.engine.cylinder;
-          $scope.engineSize = data.engine.size;
-          $scope.engineDisplacement = data.engine.displacement;
-          $scope.engineConfig = data.engine.configuration;
-          $scope.engineFuel = data.engine.fuelType;
-          $scope.horsepower = data.engine.horsepower;
-          $scope.torque = data.engine.torque;
-          $scope.valves = data.engine.totalValves;
-          $scope.engineCode = data.engine.manufacturerEngineCode;
-          $scope.compressorType = data.engine.compressorType;
+          $scope.cylinder = "Cylinder: " + data.engine.cylinder;
+          $scope.engineSize = "Size: " + data.engine.size;
+          $scope.engineDisplacement = "Displacement: " + data.engine.displacement;
+          $scope.engineConfig = "Configuration: " + data.engine.configuration;
+          $scope.engineFuel = "Fuel Type: " + data.engine.fuelType;
+          $scope.horsepower = "Horsepower: " + data.engine.horsepower;
+          $scope.torque = "Torque: " + data.engine.torque;
+          $scope.valves = "Valves: " + data.engine.totalValves;
+          $scope.engineCode = "Engine Code: " + data.engine.manufacturerEngineCode;
+          $scope.compressorType = "Compressor Type: " + data.engine.compressorType;
 
           //Car Transmission details
-          $scope.transName = data.transmission.name;
-          $scope.transType = data.transmission.transmissionType;
-          $scope.transSpeed = data.transmission.numberOfSpeeds;
+          $scope.transName = "Name: " + data.transmission.name;
+          $scope.transType = "Type: " + data.transmission.transmissionType;
+          $scope.transSpeed = "Speed: " + data.transmission.numberOfSpeeds + " speeds";
 
           //Car price
-          $scope.MSRP = data.price.baseMSRP;
-          $scope.Invoice = data.price.baseInvoice;
+          $scope.MSRP = "Manufacturer's Suggested Retail Price: $" + data.price.baseMSRP;
+          $scope.Invoice = "Base Invoice: $" + data.price.baseInvoice;
 
           //Car Style
-          $scope.styleBriefs = data.name;
-          $scope.marketStyle = data.categories.market;
-          $scope.styleClass = data.categories.EPAClass;
-          $scope.vehicleSize = data.categories.vehicleSize;
-          $scope.bodyType = data.categories.primaryBodyType;
-          $scope.vehicleStyle = data.categories.vehicleStyle;
+          $scope.styleBriefs = "Name: " + data.name;
+          $scope.marketStyle = "Market Class: " + data.categories.market;
+          $scope.styleClass = "EPA Class: " + data.categories.EPAClass;
+          $scope.vehicleSize = "Vehicle Size: " + data.categories.vehicleSize;
+          $scope.bodyType = "Body Type: " + data.categories.primaryBodyType;
+          $scope.vehicleStyle = "Vehicle Style: " + data.categories.vehicleStyle;
 
 
+        }); 
+      }); 
+    }); 
+    }
+  }; 
 
+  rideHiveService.getStyles($scope.queryInput, $scope.queryModel, $scope.queryYear).error(function (data, status) {
 
+    var count = data.modelsCount;
 
-
-        }); //end of data service
-      }); //end of styles forEach
-    }); //end of styles service
-  }; //end of fetchStyles fxn
-
-
+    if (count === 0) {
+      $scope.statusOutput = "Sorry, there's no car with that name";
+    }
+  }); 
 }]);
 
-
-/* ----------------- CREATING SERVICES USING FACTORY ----------- */
 
 //Create a service using .factory to query vehicle API and grab required data
 rideHiveApp.factory('rideHiveService', function ($http) {
@@ -183,7 +173,7 @@ rideHiveApp.factory('rideHiveService', function ($http) {
     }
   });
 
-  }; //end of vehicleQuery
+  }; 
 
   vehicleQuery.getYears = function (carInput, carModel) {
     var yearUrl = "https://api.edmunds.com/api/vehicle/v2/"+carInput+"/"+carModel+"?";
@@ -194,7 +184,7 @@ rideHiveApp.factory('rideHiveService', function ($http) {
         api_key: "h8wvpc7n4jnsqxgna874tpez"
       }
     });
-  }; //end of yearQuery
+  }; 
 
 
   vehicleQuery.getStyles = function (carInput, carModel, carYear) {
@@ -207,7 +197,7 @@ rideHiveApp.factory('rideHiveService', function ($http) {
         api_key: "h8wvpc7n4jnsqxgna874tpez"
       }
     });
-  }; //end of styleQuery
+  }; 
 
   vehicleQuery.getData = function (carStyle) {
 
@@ -220,46 +210,7 @@ rideHiveApp.factory('rideHiveService', function ($http) {
         api_key: "h8wvpc7n4jnsqxgna874tpez"
       }
     });
-  }; //end of dataQuery
-
+  }; 
 
   return vehicleQuery;
 });
-
-
-
-
-
-
-
-
-/*rideHiveApp.factory('yearService', function ($http) {
-
-  var yearQuery = {};
-
-  //Get year based on car make and model selections
-  yearQuery
-  return yearQuery;
-
-});
-
-rideHiveApp.factory('stylesService', function ($http) {
-
-  var styleQuery = {};
-
-  //This query takes user car make input, model and year selections and get styles id for a particular model and year
-  styleQuery
-
-  return styleQuery;
-});
-
-
-rideHiveApp.factory('carDataService', function ($http) {
-
-  var dataQuery = {};
-
-  //This query takes style id of a particular car make, model and year returned and get all data for that car
-  dataQuery
-
-  return dataQuery;
-});*/

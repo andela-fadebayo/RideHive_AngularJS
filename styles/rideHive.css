@@ -18,39 +18,76 @@ body {
 }
 
 #main {
-  max-width: 70%;
   margin: 0 auto;
   padding: 10px;
-  background-color: #fff;
   border: 1px dotted maroon;
   box-shadow: 0 0 1em .1em #480B0B;
 }
 
-header {
-  text-align: center;
+nav {
+  border: 1px solid maroon;
   margin: 0 auto;
+}
+
+nav ul {
+  list-style: none;
+  text-align: right;
+  margin: 0 1%;
+  padding: 1%;
+}
+
+nav ul li {
+  display: inline-block;
+}
+
+#headWrap {
+  text-align: right;
+  width: 100%;
+  height: 100%;
+  padding: 5px 0;
+  background-image: url('../images/toyota-tundra-2015.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+header {
+  margin: 40px 200px 0 0;
 }
 
 header h1 {
   font-family: 'Stalemate', cursive;
-  font-size: 3.132em;
-  margin:0 auto;
+  font-size: 3.432em;
+  margin: 0 auto;
   color: #480B0B;
+  padding: 5px;
+}
+
+#headText {
+  color: #fff;
+  margin: 40px 100px 40px 0;
+  font-size: 1.2em;
+  padding: 20px 0;
+
 }
 
 #alert {
   margin: 0 auto;
   text-align: center;
   color: #ff0000;
-  /*height: 100px;*/
+  height: 20px;
 }
 
 #results {
-  margin-top: 50px;
+  margin-top: 30px;
   text-align: left;
 }
 
-#resultsList {
+#results p {
+  font-size: 1.23em;
+  font-weight: bold;
+}
+
+.resultsList {
   list-style: none;
 }
 
@@ -77,47 +114,49 @@ header h1 {
 }
 
 #formWrap {
-  border: 1px solid maroon;
   border-radius: .45em;
-  margin: 0 auto;
-  width: 50%;
+  margin: 60px auto;
+  width: 80%;
   padding: 10px;
 }
 
 form #queryInput,
-#queryModel, 
-#makeState, 
-#makeYear,
-#keyword {
-  height: 30px;
-  width: 40%;
+#queryModel,  
+#makeYear {
+  height: 35px;
+  width: 18%;
   outline: 0;
   border: 1px solid #ddd;
   border-radius: .5em;
   font-size: 1.05em;
   font-family: "fiyin_fonts_2", "fiyin_fonts_1";
-  padding: 2px;
+  padding: 3px;
   color: #480B0B;
-  margin-left: 10px;
+  margin-left: 5px;
 }
 
 form #queryInput:focus,
 #queryModel:focus, 
-#makeState:focus, 
-#makeYear:focus,
-#keyword:focus {
+#makeYear:focus {
   border: 1px solid #000;
   background-color: #f8f8f8;
 }
 
+form label {
+  background-color: #eee;
+  padding: 3px;
+  border-radius: .24em;
+  margin-left: 20px;
+}
+
 #querySubmit {
   height: 35px;
-  width: 30%;
+  width: 15%;
   outline: 0;
   border-radius: .45em;
   font-family: "fiyin_fonts_2", "fiyin_fonts_1";
   font-size: 1.25em;
-  margin: 0 40px 0 40px;
+  margin: 0 10px 0 40px;
   background-color: #480B0B;
   color: #fff;
 }
@@ -131,5 +170,5 @@ footer {
   font-size: .85em;
   margin: 20px auto 5px;
   color: #480B0B;
-  border-top: 1px solid #999;
+  border-top: 1px solid maroon;
 }

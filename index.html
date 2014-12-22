@@ -8,95 +8,121 @@
 </head>
 
 <body ng-controller = "rhController">
+  
   <div id="main">
-    <header>
-      <h1>Ride Hive {{names}}</h1>
-      <em>...for {{56 - 43}} car lovers</em>
-      <p>Your one stop for detailed infomation on cars, truck, SUV, van, minivan...</p>
-    </header>
+    <nav>
+      <ul>
+        <li>Home</li>
+        <li>About</li>
+        <li>Contact</li>
+        <li>faq</li>
+      </ul>
+    </nav>
+    
+    <div id="headWrap">
+      <header>
+        <h1>Ride Hive</h1>
+        <em>...for car lovers</em>
+      </header>
+    
+      <div id="headText">
+        <p>Your one stop for detailed infomation on cars, truck, SUV, van, minivan...</p>
+        <p>Search for your favourite cars here...</p>
+        <p>Search for <em>{{queryInput}}</em></p>
+      </div>
 
-    <!-- <p style="text-align: center;">Search for  </p> -->
-
-    <div id="alert" ng-bind="statusOutput">
-    </div>
-
-    <div id="query">
-      <p>Search for your favourite cars here... Search for <em>{{queryInput}}</em></p>
+      <div id="alert" ng-bind="statusOutput">
+      </div>
 
       <div id="formWrap">
         <form>
           <label for="queryInput">Make:</label>
           <input type="text" ng-model="queryInput" ng-keyup="fetchModels()" id="queryInput" placeholder="Enter Car Make..." />
-          <br /><br />
-
+          
           <label for="queryModel">Model:</label>
           <select id="queryModel" ng-model="queryModel" ng-change="fetchYears()">
             <option ng-repeat="model in models">{{model.name}}</option>
           </select>
-<!-- 
-          <input type="text" id="queryModel" placeholder="Enter Car Model..." /> -->
-          <br /><br />
           
           <label for="makeYear">Year:</label>
           <select id="makeYear" ng-model="queryYear">
             <option ng-repeat="modelYear in years2">{{modelYear.year}}</option>
           </select>
           
-          <br /><br />
-          
-          
           <input type="submit" id="querySubmit" value="Go" ng-click="fetchStyles()" />
         </form>
+
       </div>
+  </div>
 
-    </div>
 
-    <div>You selected: {{queryModel}} and {{queryYear}}
-    </div>
-
-    <div id="results">
+  <div id="results">
       
-      <p class="basicInfo"> {{head1}} 
-      <ul>
-        <li> {{head10}} {{carMake}} </li>
+    <p class="basicInfo"> {{head1}} 
+      <ul class="resultsList">
+        <li> {{carMake}} </li>
         <li> {{carModel}} </li>
         <li> {{carWheels}} </li>
         <li> {{carDoors}} </li>
         <li> {{carYear}} </li>
-        <li> {{carState}} </li>
         <li> {{carTrim}} </li>
       </ul>
-      </p>
+    </p>
 
-      <p class="engineDetails"> {{head2}}
-        <ul>
-          <li> {{engineName}} </li>
-          <li> {{compressionRatio}} </li>
-          <li> {{compressorType}} </li>
-          <li> {{cylinder}} </li>
-          <li> {{engineSize}} </li>
-          <li> {{engineDisplacement}} </li>
-          <li> {{engineConfig}} </li>
-          <li> {{engineFuel}} </li>
-          <li> {{horsepower}} </li>
-          <li> {{torque}} </li>
-          <li> {{valves}} </li>
-          <li> {{engineCode}} </li>
-        </ul>
-      </p>
+    <p class="engineDetails"> {{head2}}
+      <ul class="resultsList">
+        <li> {{engineName}} </li>
+        <li> {{compressionRatio}} </li>
+        <li> {{compressorType}} </li>
+        <li> {{cylinder}} </li>
+        <li> {{engineSize}} </li>
+        <li> {{engineDisplacement}} </li>
+        <li> {{engineConfig}} </li>
+        <li> {{engineFuel}} </li>
+        <li> {{horsepower}} </li>
+        <li> {{torque}} </li>
+        <li> {{valves}} </li>
+        <li> {{engineCode}} </li>
+      </ul>
+    </p>
 
-      <p class="transmission">
-      </p>
+    <p class="transmission"> {{head3}}
+      <ul class="resultsList">
+        <li> {{transName}} </li>
+        <li> {{transType}} </li>
+        <li> {{transSpeed}} </li>
+      </ul>
+    </p>
 
-    </div>
+    <p class="carStyle"> {{head4}}
+      <ul class="resultsList">
+        <li> {{styleBriefs}} </li>
+        <li> {{marketStyle}} </li>
+        <li> {{styleClass}} </li>
+        <li> {{vehicleSize}} </li>
+        <li> {{bodyType}} </li>
+        <li> {{vehicleStyle}} </li>
+      </ul>
+    </p>
 
-    <footer>
-      <p>Andela API project implemented using AngularJS</p>
-      <p>Fiyin Adebayo | &copy; 2014</p>
-    </footer>
+    <p class="price"> {{head5}}
+      <ul class="resultsList">
+        <li> {{MSRP}} </li>
+        <li> {{Invoice}} </li>
+      </ul>
+    </p>
 
-    <script type="text/javascript" src="scripts/angular.js"></script>
-    <script type="text/javascript" src="scripts/rideHive.js"></script>
   </div>
+
+  <footer>
+    <p>Andela API project implemented using AngularJS</p>
+    <p>Fiyin Adebayo | &copy; 2014</p>
+  </footer>
+
+  <script type="text/javascript" src="scripts/angular.js"></script>
+  <script type="text/javascript" src="scripts/rideHive.js"></script>
+
+</div>
+
 </body>
 </html>
