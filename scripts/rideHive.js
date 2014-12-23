@@ -31,10 +31,12 @@ rideHiveApp.controller('rhController', ['$scope', 'rideHiveService', function ($
       var count = data.modelsCount;
 
       if(count === 0) {
-        $scope.statusOutput = "Car make with name '" + $scope.queryInput + "' is not found!";
         // $scope.statusOutput = "Searching...";
+        $scope.statusOutput = "";
+        $scope.statusRoll = "./images/ajaxSpinner.gif";
       }
       else {
+        $scope.statusRoll = "";
         $scope.statusOutput = "Number of " + $scope.queryInput +" models found: " + data.modelsCount;
         
         //clear models and year inputs.
@@ -53,13 +55,17 @@ rideHiveApp.controller('rhController', ['$scope', 'rideHiveService', function ($
         });
       } 
     });
+
+    rideHiveService.getModels($scope.queryInput).error(function (data, status) {
+      $scope.statusOutput = "Please enter a car make!";
+    });
   }; 
 
   
   //get car make and model year
   $scope.fetchYears = function () {
 
-    $scope.statusOutput = "Please wait...";
+    $scope.statusOutput = "Fetching Model years...";
 
     rideHiveService.getYears($scope.queryInput, $scope.queryModel).success(function (data) {
 

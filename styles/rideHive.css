@@ -71,7 +71,8 @@ header h1 {
 
 }
 
-#alert {
+#alert,
+#alertRoll {
   margin: 0 auto;
   text-align: center;
   color: #ff0000;
