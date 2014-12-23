@@ -31,12 +31,12 @@ rideHiveApp.controller('rhController', ['$scope', 'rideHiveService', function ($
       var count = data.modelsCount;
 
       if(count === 0) {
-        // $scope.statusOutput = "Searching...";
-        $scope.statusOutput = "";
-        $scope.statusRoll = "./images/ajaxSpinner.gif";
+        $scope.statusOutput = "Searching...";
+        // $scope.statusOutput = "";
+        // $scope.statusRoll = "./images/ajaxSpinner.gif";
       }
       else {
-        $scope.statusRoll = "";
+        // $scope.statusRoll = "";
         $scope.statusOutput = "Number of " + $scope.queryInput +" models found: " + data.modelsCount;
         
         //clear models and year inputs.
