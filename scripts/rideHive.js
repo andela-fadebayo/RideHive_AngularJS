@@ -62,13 +62,13 @@ rideHiveApp.controller('rhController', ['$scope', 'rideHiveService', function ($
     $scope.statusOutput = "Please wait...";
 
     rideHiveService.getYears($scope.queryInput, $scope.queryModel).success(function (data) {
-      console.log("here are your years: " + data.id);
 
-      $scope.years2 = [];
+      $scope.years = [];
       
       //loop theo to retrieve year
       angular.forEach(data.years, function (modelYear, index) {
-        $scope.years2.push(modelYear);
+        $scope.years.push(modelYear);
+
         $scope.statusOutput = "";
       });
     });
@@ -83,11 +83,26 @@ rideHiveApp.controller('rhController', ['$scope', 'rideHiveService', function ($
     else {
       rideHiveService.getStyles($scope.queryInput, $scope.queryModel, $scope.queryYear).success(function (data) {
 
+        $scope.statusOutput = "Searching, please wait...";
+
       //loop yet again through years object to retried styles id
       angular.forEach(data.styles, function (style, index) {
         $scope.styles.push(style);
 
         $scope.carStyleId = style.id;
+
+        rideHiveService.getPhoto($scope.carStyleId).success(function (photos) {
+          
+          $scope.allPhotos = [];
+
+          angular.forEach(photos, function (photo, index) {
+            
+            $scope.allPhotos.push(photo);
+
+            $scope.img = "http://media.ed.edmunds-media.com"+photo.photoSrcs[2];
+            
+          });
+        });
 
         rideHiveService.getData($scope.carStyleId).success(function (data) {
 
@@ -115,8 +130,8 @@ rideHiveApp.controller('rhController', ['$scope', 'rideHiveService', function ($
           $scope.engineDisplacement = "Displacement: " + data.engine.displacement;
           $scope.engineConfig = "Configuration: " + data.engine.configuration;
           $scope.engineFuel = "Fuel Type: " + data.engine.fuelType;
-          $scope.horsepower = "Horsepower: " + data.engine.horsepower;
-          $scope.torque = "Torque: " + data.engine.torque;
+          $scope.horsepower = "Horsepower: " + data.engine.horsepower + "hp";
+          $scope.torque = "Torque: " + data.engine.torque + "N-m";
           $scope.valves = "Valves: " + data.engine.totalValves;
           $scope.engineCode = "Engine Code: " + data.engine.manufacturerEngineCode;
           $scope.compressorType = "Compressor Type: " + data.engine.compressorType;
@@ -124,7 +139,7 @@ rideHiveApp.controller('rhController', ['$scope', 'rideHiveService', function ($
           //Car Transmission details
           $scope.transName = "Name: " + data.transmission.name;
           $scope.transType = "Type: " + data.transmission.transmissionType;
-          $scope.transSpeed = "Speed: " + data.transmission.numberOfSpeeds + " speeds";
+          $scope.transSpeed = "Speed: " + data.transmission.numberOfSpeeds;
 
           //Car price
           $scope.MSRP = "Manufacturer's Suggested Retail Price: $" + data.price.baseMSRP;
@@ -138,6 +153,7 @@ rideHiveApp.controller('rhController', ['$scope', 'rideHiveService', function ($
           $scope.bodyType = "Body Type: " + data.categories.primaryBodyType;
           $scope.vehicleStyle = "Vehicle Style: " + data.categories.vehicleStyle;
 
+          $scope.statusOutput = "";
 
         }); 
       }); 
@@ -206,6 +222,18 @@ rideHiveApp.factory('rideHiveService', function ($http) {
     return $http.get(dataUrl, {
       params: {
         view: "full",
+        fmt: "json",
+        api_key: "h8wvpc7n4jnsqxgna874tpez"
+      }
+    });
+  };
+
+  vehicleQuery.getPhoto = function (carStyle) {
+
+    var photoUrl = "https://api.edmunds.com/v1/api/vehiclephoto/service/findphotosbystyleid?styleId="+carStyle+"&";
+
+    return $http.get(photoUrl, {
+      params: {
         fmt: "json",
         api_key: "h8wvpc7n4jnsqxgna874tpez"
       }

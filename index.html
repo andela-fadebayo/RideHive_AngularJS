@@ -46,7 +46,7 @@
           
           <label for="makeYear">Year:</label>
           <select id="makeYear" ng-model="queryYear">
-            <option ng-repeat="modelYear in years2">{{modelYear.year}}</option>
+            <option ng-repeat="modelYear in years">{{modelYear.year}}</option>
           </select>
           
           <input type="submit" id="querySubmit" value="Go" ng-click="fetchStyles()" />
@@ -57,60 +57,69 @@
 
 
   <div id="results">
+    <div id="resultsText">  
+      <p class="basicInfo"> {{head1}} 
+        <ul class="resultsList">
+          <li> {{carMake}} </li>
+          <li> {{carModel}} </li>
+          <li> {{carWheels}} </li>
+          <li> {{carDoors}} </li>
+          <li> {{carYear}} </li>
+          <li> {{carTrim}} </li>
+        </ul>
+      </p>
+
+      <p class="engineDetails"> {{head2}}
+        <ul class="resultsList">
+          <li> {{engineName}} </li>
+          <li> {{compressionRatio}} </li>
+          <li> {{compressorType}} </li>
+          <li> {{cylinder}} </li>
+          <li> {{engineSize}} </li>
+          <li> {{engineDisplacement}} </li>
+          <li> {{engineConfig}} </li>
+          <li> {{engineFuel}} </li>
+          <li> {{horsepower}} </li>
+          <li> {{torque}} </li>
+          <li> {{valves}} </li>
+          <li> {{engineCode}} </li>
+        </ul>
+      </p>
+
+      <p class="transmission"> {{head3}}
+        <ul class="resultsList">
+          <li> {{transName}} </li>
+          <li> {{transType}} </li>
+          <li> {{transSpeed}} </li>
+        </ul>
+      </p>
+
+      <p class="carStyle"> {{head4}}
+        <ul class="resultsList">
+          <li> {{styleBriefs}} </li>
+          <li> {{marketStyle}} </li>
+          <li> {{styleClass}} </li>
+          <li> {{vehicleSize}} </li>
+          <li> {{bodyType}} </li>
+          <li> {{vehicleStyle}} </li>
+        </ul>
+      </p>
+
+      <p class="price"> {{head5}}
+        <ul class="resultsList">
+          <li> {{MSRP}} </li>
+          <li> {{Invoice}} </li>
+        </ul>
+      </p>
+    </div>
+
+    <div id="resultsPhoto">
+      <p ng-repeat="photo in allPhotos"> <span class="resultsList">{{photo.captionTranscript}}</span> <br />
+        {{photo.subType}}  <br />
+        <span class="picture"> <img src={{img}} width="400" height="300"> </span>  <br />
+      </p>
       
-    <p class="basicInfo"> {{head1}} 
-      <ul class="resultsList">
-        <li> {{carMake}} </li>
-        <li> {{carModel}} </li>
-        <li> {{carWheels}} </li>
-        <li> {{carDoors}} </li>
-        <li> {{carYear}} </li>
-        <li> {{carTrim}} </li>
-      </ul>
-    </p>
-
-    <p class="engineDetails"> {{head2}}
-      <ul class="resultsList">
-        <li> {{engineName}} </li>
-        <li> {{compressionRatio}} </li>
-        <li> {{compressorType}} </li>
-        <li> {{cylinder}} </li>
-        <li> {{engineSize}} </li>
-        <li> {{engineDisplacement}} </li>
-        <li> {{engineConfig}} </li>
-        <li> {{engineFuel}} </li>
-        <li> {{horsepower}} </li>
-        <li> {{torque}} </li>
-        <li> {{valves}} </li>
-        <li> {{engineCode}} </li>
-      </ul>
-    </p>
-
-    <p class="transmission"> {{head3}}
-      <ul class="resultsList">
-        <li> {{transName}} </li>
-        <li> {{transType}} </li>
-        <li> {{transSpeed}} </li>
-      </ul>
-    </p>
-
-    <p class="carStyle"> {{head4}}
-      <ul class="resultsList">
-        <li> {{styleBriefs}} </li>
-        <li> {{marketStyle}} </li>
-        <li> {{styleClass}} </li>
-        <li> {{vehicleSize}} </li>
-        <li> {{bodyType}} </li>
-        <li> {{vehicleStyle}} </li>
-      </ul>
-    </p>
-
-    <p class="price"> {{head5}}
-      <ul class="resultsList">
-        <li> {{MSRP}} </li>
-        <li> {{Invoice}} </li>
-      </ul>
-    </p>
+    </div>
 
   </div>
 
