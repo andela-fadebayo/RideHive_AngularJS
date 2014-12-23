@@ -38,6 +38,7 @@ nav ul {
 
 nav ul li {
   display: inline-block;
+  margin-left: 20px;
 }
 
 #headWrap {
@@ -56,7 +57,7 @@ header {
 
 header h1 {
   font-family: 'Stalemate', cursive;
-  font-size: 3.432em;
+  font-size: 3.632em;
   margin: 0 auto;
   color: #480B0B;
   padding: 5px;
@@ -102,9 +103,22 @@ header h1 {
   border: 1px dotted maroon;
 }
 
-.imgCaption {
-  font-style: italic;
-  width: 380px;
+#resultsText {
+  float: left;
+  width: 40%;
+  margin-left: 20px;
+}
+
+#resultsPhoto {
+  float: right;
+  width: 50%;
+  margin-right: 10px;
+}
+
+.picture img {
+  width: 400px;
+  height: 300px;
+  border-radius: 1.5em;
 }
 
 .carLabels {
@@ -166,6 +180,7 @@ form label {
 }
 
 footer {
+  clear: both;
   text-align: center;
   font-size: .85em;
   margin: 20px auto 5px;
