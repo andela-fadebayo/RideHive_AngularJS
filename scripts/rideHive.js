@@ -31,12 +31,12 @@ rideHiveApp.controller('rhController', ['$scope', 'rideHiveService', function ($
       var count = data.modelsCount;
 
       if(count === 0) {
-        // $scope.statusOutput = "Searching...";
-        $scope.statusOutput = "";
-        $scope.statusRoll = "./images/ajaxSpinner.gif";
+        $scope.statusOutput = "Searching...";
+        // $scope.statusOutput = "";
+        // $scope.statusRoll = "./images/ajaxSpinner.gif";
       }
       else {
-        $scope.statusRoll = "";
+        // $scope.statusRoll = "";
         $scope.statusOutput = "Number of " + $scope.queryInput +" models found: " + data.modelsCount;
         
         //clear models and year inputs.
@@ -56,6 +56,7 @@ rideHiveApp.controller('rhController', ['$scope', 'rideHiveService', function ($
       } 
     });
 
+    //error function
     rideHiveService.getModels($scope.queryInput).error(function (data, status) {
       $scope.statusOutput = "Please enter a car make!";
     });
@@ -105,7 +106,7 @@ rideHiveApp.controller('rhController', ['$scope', 'rideHiveService', function ($
             
             $scope.allPhotos.push(photo);
 
-            $scope.img = "http://media.ed.edmunds-media.com"+photo.photoSrcs[2];
+            /*$scope.img = "http://media.ed.edmunds-media.com"+photo.photoSrcs[2];*/
             
           });
         });

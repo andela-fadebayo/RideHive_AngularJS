@@ -118,7 +118,7 @@
     <div id="resultsPhoto">
       <p ng-repeat="photo in allPhotos"> <span class="resultsList">{{photo.captionTranscript}}</span> <br />
         {{photo.subType}}  <br />
-        <span class="picture"> <img src={{img}} width="400" height="300"> </span>  <br />
+        <span class="picture"> <img src="http://media.ed.edmunds-media.com{{photo.photoSrcs[0]}}" width="400" height="300"> </span>  <br />
       </p>
       
     </div>
