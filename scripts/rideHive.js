@@ -56,6 +56,7 @@ rideHiveApp.controller('rhController', ['$scope', 'rideHiveService', function ($
       } 
     });
 
+    //error function
     rideHiveService.getModels($scope.queryInput).error(function (data, status) {
       $scope.statusOutput = "Please enter a car make!";
     });
@@ -104,7 +105,7 @@ rideHiveApp.controller('rhController', ['$scope', 'rideHiveService', function ($
             
             $scope.allPhotos.push(photo);
 
-            $scope.img = "http://media.ed.edmunds-media.com"+photo.photoSrcs[2];
+            /*$scope.img = "http://media.ed.edmunds-media.com"+photo.photoSrcs[2];*/
             
           });
         });
