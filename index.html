@@ -22,19 +22,19 @@
     <div id="headWrap">
       <header>
         <h1>Ride Hive</h1>
-        <em>...for car lovers</em>
+        <span><em>...for car lovers</em></span>
       </header>
-    
-      <div id="headText">
-        <p>Your one stop for detailed infomation on cars, truck, SUV, van, minivan...</p>
-        <p>Search for your favourite cars here...</p>
-        <p>Search for <em>{{queryInput}}</em></p>
-      </div>
-
-      <div id="alertRoll"> <img src={{statusRoll}} > </div>
 
       <div id="alert" ng-bind="statusOutput">
       </div>
+
+      <div id="headText">
+        <p>Your one stop for detailed infomation on cars, truck, SUV, van, minivan...</p>
+        <p>Search for your favourite cars here...</p>
+        <p>Search for... <em>{{queryInput}} {{queryModel}} {{queryYear}}</em></p>
+      </div>
+
+      <div id="alertRoll"> <img src={{statusRoll}} > </div>
 
       <div id="formWrap">
         <form>
