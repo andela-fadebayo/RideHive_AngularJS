@@ -33,10 +33,10 @@ rideHiveApp.controller('rhController', ['$scope', 'rideHiveService', function ($
       if(count === 0) {
         $scope.statusOutput = "Searching...";
         // $scope.statusOutput = "";
-        // $scope.statusRoll = "./images/ajaxSpinner.gif";
+        $scope.statusRoll = "./images/ajaxSpinner.gif";
       }
       else {
-        // $scope.statusRoll = "";
+        $scope.statusRoll = "";
         $scope.statusOutput = "Number of " + $scope.queryInput +" models found: " + data.modelsCount;
         
         //clear models and year inputs.
@@ -91,6 +91,7 @@ rideHiveApp.controller('rhController', ['$scope', 'rideHiveService', function ($
       rideHiveService.getStyles($scope.queryInput, $scope.queryModel, $scope.queryYear).success(function (data) {
 
         $scope.statusOutput = "Searching, please wait...";
+        $scope.statusRoll = "./images/ajaxSpinner.gif";
 
       //loop yet again through years object to retried styles id
       angular.forEach(data.styles, function (style, index) {
@@ -105,8 +106,6 @@ rideHiveApp.controller('rhController', ['$scope', 'rideHiveService', function ($
           angular.forEach(photos, function (photo, index) {
             
             $scope.allPhotos.push(photo);
-
-            /*$scope.img = "http://media.ed.edmunds-media.com"+photo.photoSrcs[2];*/
             
           });
         });
@@ -161,6 +160,7 @@ rideHiveApp.controller('rhController', ['$scope', 'rideHiveService', function ($
           $scope.vehicleStyle = "Vehicle Style: " + data.categories.vehicleStyle;
 
           $scope.statusOutput = "";
+          $scope.statusRoll = "";
 
         }); 
       }); 
